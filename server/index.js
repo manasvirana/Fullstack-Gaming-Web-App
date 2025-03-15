@@ -7,7 +7,7 @@ import destinationsRoutes from "./routes/destinations.js";
 dotenv.config(); // Load environment variables
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 // Ensure DATABASE_URL is loaded
 if (!process.env.DATABASE_URL) {
