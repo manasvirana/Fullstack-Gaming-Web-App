@@ -72,6 +72,16 @@ app.get("/api", (req, res) => {
     res.status(200).json({ message: "API is working!" });
 });
 
+app.get("/api/destinations", async (req, res) => {
+    try {
+        const destinations = await db.query("SELECT * FROM destinations");
+        res.json(destinations.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 // Routes
 app.use("/api/destinations", destinationsRoutes);
 
