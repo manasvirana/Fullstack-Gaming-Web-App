@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import API_BASE_URL from "../config.jsx";
 
 export const fetchDestinations = async () => {
   try {

@@ -1,10 +1,13 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import API_BASE_URL from "../config.jsx";
 
-export const fetchDestinations = async () => {
+const fetchDestinations = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/destinations`);
-    return await response.json();
+    if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error("Error fetching destinations:", error);
+    console.error("Fetch Error:", error);
   }
 };
