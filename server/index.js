@@ -15,13 +15,14 @@ if (!process.env.DATABASE_URL) {
     process.exit(1); // Stop the server if DB URL is missing
 }
 
-// Create a database pool to be used in routes
 const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL?.includes("localhost") 
-        ? false  // If localhost, don't use SSL
-        : { rejectUnauthorized: false },  // If using Railway, use SSL
-});
+    ssl: {
+      rejectUnauthorized: false 
+    },
+    connectionTimeoutMillis: 10000
+  });
+  
 
 
 // Make pool available to other modules
