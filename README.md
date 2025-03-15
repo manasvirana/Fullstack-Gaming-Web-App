@@ -51,17 +51,18 @@ Before running this project, ensure you have the following installed:
  
 ## **Demos**  
 
-🖼️ Backend 
+### **🖼️ Frontend**
+![Screenshot 2025-03-15 154334](https://github.com/user-attachments/assets/c88982fc-375e-47e5-9768-13a9ef404612)
+![Screenshot 2025-03-16 010411](https://github.com/user-attachments/assets/cfc20ff6-c8bb-4aec-982c-ef159fea2da3)
+![Screenshot 2025-03-16 010427](https://github.com/user-attachments/assets/d25fc10e-7975-40d6-9c6a-21b45ead5a83)
+
+### **🖼️ Backend**
 ![Screenshot 2025-03-16 005942](https://github.com/user-attachments/assets/88f73baa-b28f-4dee-9649-d7bc596a9cb1)
 ![Screenshot 2025-03-16 010009](https://github.com/user-attachments/assets/0a8fdbf1-2e28-43ec-947b-bc0a3685bcf4)
 ![Screenshot 2025-03-16 010033](https://github.com/user-attachments/assets/568441a8-7867-44f8-ba31-af2f11960467)
 ![Screenshot 2025-03-15 221313](https://github.com/user-attachments/assets/d6181f83-2527-44e8-a9fa-c0cce48d7159)
 
-🖼️ Frontend
-![Screenshot 2025-03-15 154334](https://github.com/user-attachments/assets/c88982fc-375e-47e5-9768-13a9ef404612)
-![Screenshot 2025-03-16 010411](https://github.com/user-attachments/assets/cfc20ff6-c8bb-4aec-982c-ef159fea2da3)
-![Screenshot 2025-03-16 010427](https://github.com/user-attachments/assets/d25fc10e-7975-40d6-9c6a-21b45ead5a83)
-🖼️ Database
+### **🖼️ Database**
 ![Screenshot 2025-03-16 010121](https://github.com/user-attachments/assets/76f5dd5e-80c8-4ef5-96c1-5cc0d2f2bf4a)
 ![Screenshot 2025-03-16 010213](https://github.com/user-attachments/assets/d3c0accf-d6e0-44b6-84fe-d77fdae9e13b)
 
