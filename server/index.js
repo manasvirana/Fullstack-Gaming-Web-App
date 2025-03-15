@@ -7,7 +7,7 @@ import destinationsRoutes from "./routes/destinations.js";
 dotenv.config(); // Load environment variables
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 // Ensure DATABASE_URL is loaded
 if (!process.env.DATABASE_URL) {
@@ -20,14 +20,23 @@ const pool = new pg.Pool({
     ssl: {
       rejectUnauthorized: false 
     },
-    connectionTimeoutMillis: 10000
+    connectionTimeoutMillis: 30000, // Increase to 30 seconds
+    idleTimeoutMillis: 30000 // Idle timeout as well
   });
   
 
 
 // Make pool available to other modules
 app.locals.pool = pool;
-
+// Add this after creating the pool
+pool.connect()
+  .then(client => {
+    console.log('Database connection established successfully');
+    client.release();
+  })
+  .catch(err => {
+    console.error('Error connecting to database:', err);
+  });
 // Middleware
 app.use(express.json()); // For parsing JSON request bodies
 app.use(
