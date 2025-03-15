@@ -1,7 +1,5 @@
 export default {
-    transform: {}, 
-    testMatch: ["<rootDir>/tests/**/*.test.mjs"], 
-    moduleFileExtensions: ["js", "mjs"], 
-    verbose: true, 
-  };
-  
+  transform: {}, // Prevent Jest from trying to transform ESM
+  testEnvironment: "node",
+  extensionsToTreatAsEsm: [".mjs"],
+};

@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API_BASE_URL from "../config.js";
 
-
-
-
-
 //confetti
 const Confetti = () => {
   const [particles, setParticles] = useState([]);
@@ -27,7 +23,6 @@ const Confetti = () => {
     
     setParticles(newParticles);
     
-
     const timer = setTimeout(() => {
       setParticles([]);
     }, 2500);
@@ -84,7 +79,6 @@ const SadFace = () => {
   );
 };
 
-
 const Game = () => {
     const [destination, setDestination] = useState(null);
     const [userGuess, setUserGuess] = useState("");
@@ -95,46 +89,45 @@ const Game = () => {
     const [showSadFace, setShowSadFace] = useState(false);
     const [funFact, setFunFact] = useState("");
     
-  
   useEffect(() => {
     fetchDestinations();
   }, []);
   
   const fetchDestinations = async () => {
     try {
-      const response = await fetch(API_BASE_URL);
-      if (!response.ok) throw new Error(`Error: ${response.status}`);
-      
-      const data = await response.json();
-      console.log("Fetched Data:", data);
-      if (Array.isArray(data) && data.length > 0) {
-        const randomDestination = data[Math.floor(Math.random() * data.length)];
-        console.log("Selected destination:", randomDestination);
-        setDestination(randomDestination);
-        if (randomDestination.funFact) {
-          setFunFact(randomDestination.funFact);
-        } else if (randomDestination.description) {
-          setFunFact(`Fun fact: ${randomDestination.description}`);
+        const response = await fetch(API_BASE_URL);
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+        const data = await response.json();
+        console.log("Fetched Data:", data);
+        if (Array.isArray(data) && data.length > 0) {
+            const randomDestination = data[Math.floor(Math.random() * data.length)];
+            console.log("Selected destination:", randomDestination);
+            setDestination(randomDestination);
+            if (randomDestination.funFact) {
+                setFunFact(randomDestination.funFact);
+            } else if (randomDestination.description) {
+                setFunFact(`Fun fact: ${randomDestination.description}`);
+            } else {
+                setFunFact(`Fun fact: This destination is a fascinating place to visit!`);
+            }
+        } else if (data && typeof data === 'object') {
+            console.log("Single destination:", data);
+            setDestination(data);
+            setFunFact(data.funFact || `Fun fact: ${data.name || 'This destination'} is known for its unique culture!`);
         } else {
-          setFunFact(`Fun fact: This destination is a fascinating place to visit!`);
+            console.error("Unexpected data format:", data);
+            setDestination(null);
+            setFeedback("Failed to parse destination data.");
         }
-      } else if (data && typeof data === 'object') {
-        console.log("Single destination:", data);
-        setDestination(data);
-        setFunFact(data.funFact || `Fun fact: ${data.name || 'This destination'} is known for its unique culture!`);
-      } else {
-        console.error("Unexpected data format:", data);
-        setDestination(null);
-        setFeedback("Failed to parse destination data.");
-      }
-      setShowConfetti(false);
-      setShowSadFace(false);
-      setFeedback("");
+        setShowConfetti(false);
+        setShowSadFace(false);
+        setFeedback("");
     } catch (error) {
-      console.error("Fetch Error:", error);
-      setFeedback("Failed to load destinations.");
+        console.error("Fetch Error:", error);
+        setFeedback("Failed to load destinations.");
     }
-  };
+};
   
   const handleGuess = () => {
     console.log("Submit Clicked!");
@@ -213,6 +206,33 @@ const Game = () => {
       });
   };
   
+  // Function to get the best available clue from destination object
+  const getClue = (destination) => {
+    if (!destination) return "Loading...";
+    
+    // Check if clues is an array and has items
+    if (Array.isArray(destination.clues) && destination.clues.length > 0) {
+      return destination.clues[0];
+    }
+    
+    // Check for a single clue property
+    if (destination.clue) return destination.clue;
+    
+    // Check other possible properties
+    if (destination.hint) return destination.hint;
+    if (destination.description) return destination.description;
+    
+    // Check if clue is a string directly
+    if (typeof destination.clues === 'string') return destination.clues;
+    
+    // Last resort, check if we can extract from other properties
+    if (destination.name) return `This is a popular destination known for its unique characteristics.`;
+    
+    // If nothing works
+    console.error("No clue found in destination data:", destination);
+    return "Clue unavailable. Please try restarting the game.";
+  };
+  
   return (
     <div className="game-container">
       {showConfetti && <Confetti />}
@@ -221,7 +241,7 @@ const Game = () => {
       
       {destination ? (
         <div>
-          <p><strong>Clue:</strong> {destination.clues?.[0] || destination.hint || destination.description || "No clue available"}</p>
+          <p><strong>Clue:</strong> {getClue(destination)}</p>
           <div>
             <input
               type="text"
