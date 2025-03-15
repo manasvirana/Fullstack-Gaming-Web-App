@@ -18,8 +18,9 @@ if (!process.env.DATABASE_URL) {
 // Create a database pool to be used in routes
 const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_URL?.includes("localhost") ? false : { rejectUnauthorized: false },
+    ssl: { rejectUnauthorized: false }, // Always use SSL for Railway
 });
+
 
 // Make pool available to other modules
 app.locals.pool = pool;
