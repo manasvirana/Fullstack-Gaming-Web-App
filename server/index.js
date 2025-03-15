@@ -64,6 +64,10 @@ app.get("/api/test", (req, res) => {
 app.get("/api", (req, res) => {
     res.status(200).json({ message: "✅ API root working!" });
 });
+// ✅ Root Route
+app.get("/", (req, res) => {
+    res.status(200).json({ message: "🚀 Server is running!" });
+});
 
 // Destinations Route
 app.use("/api/destinations", destinationsRoutes);
