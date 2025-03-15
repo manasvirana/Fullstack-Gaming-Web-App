@@ -1,22 +1,19 @@
 import express from "express";
-import { pool } from "../index.js";
 
 const router = express.Router();
 
-
-router.get("/test", (req, res) => {
-    res.json({ message: "Destinations test API is working!" });
-});
-
-
 router.get("/", async (req, res) => {
     try {
-        const destinations = await pool.query("SELECT * FROM destinations");
-        res.json(destinations.rows);
-    } catch (err) {
-        console.error("Error fetching destinations:", err);
-        res.status(500).json({ error: "Internal Server Error", details: err.message });
+        const result = await req.app.locals.pool.query("SELECT * FROM destinations;");
+        if (result.rows.length === 0) {
+            return res.status(200).json({ message: "No destinations found" });
+        }
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error("Database error:", error);
+        res.status(500).json({ error: "Database error", details: error.message });
     }
 });
+
 
 export default router;

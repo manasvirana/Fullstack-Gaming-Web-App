@@ -16,10 +16,12 @@ if (!process.env.DATABASE_URL) {
 
 const pool = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false, 
-    connectionTimeoutMillis: 30000,
-    idleTimeoutMillis: 30000
+    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+    max: 5,  // Limit connections
+    idleTimeoutMillis: 30000, // Close idle connections after 30s
+    connectionTimeoutMillis: 5000 // Fail fast if no connection
 });
+
 
 app.locals.pool = pool;
 
