@@ -95,10 +95,16 @@ const Game = () => {
   
   const fetchDestinations = async () => {
     try {
-        const response = await fetch(API_BASE_URL);
-        if (!response.ok) throw new Error(`Error: ${response.status}`);
-
-        const data = await response.json();
+      console.log("Fetching from:", API_BASE_URL);
+      const response = await fetch(API_BASE_URL);
+      console.log("Response status:", response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Error: ${response.status} - ${errorText}`);
+      }
+  
+      const data = await response.json();
         console.log("Fetched Data:", data);
         if (Array.isArray(data) && data.length > 0) {
             const randomDestination = data[Math.floor(Math.random() * data.length)];

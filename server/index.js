@@ -33,19 +33,20 @@ pool.connect()
         process.exit(1);
     });
 
-// Middleware
+
 app.use(express.json());
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173", 
-            "https://fullstack-gaming-web-app.vercel.app"
-        ],
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true
+      origin: [
+        "http://localhost:5173",
+        "https://fullstack-gaming-web-app.vercel.app",
+
+      ],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true
     })
-);
+  );
 
 app.use((req, res, next) => {
     if (req.url.includes("%0A")) {
