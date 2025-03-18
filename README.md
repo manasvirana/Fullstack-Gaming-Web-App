@@ -46,7 +46,7 @@ Before running this project, ensure you have the following installed:
 - **PostgreSQL** – [Download PostgreSQL](https://www.postgresql.org/download/)  
 - **Postman (for API testing)** – [Download Postman](https://www.postman.com/downloads/)  
 - **A Code Editor (Cursor)** – [Download Cursor Code](https://cursor.sh/)  
-- **Render or Railway account** (For Deployment)  
+- **Vercel or Railway account** (For Deployment)  
 
  
 ## **Demos**  
@@ -95,9 +95,15 @@ To ensure the reliability and correctness of the application, the following test
    - Tested edge cases like invalid inputs and unauthorized access.  
 ![Screenshot 2025-03-16 014517](https://github.com/user-attachments/assets/29f3e886-e769-4c3b-ae43-98e59878c8fa)
 
-2. **Unit Testing with Jest**  
-   - Wrote unit tests for critical functions, including API request handlers and game logic.  
-   - Ensured correct responses for valid and invalid data.    
+2. **Automated Testing with Jest & Supertest**  
+   - GET / → Should return { message: "Server is running!" }
+   - GET /api/test → Should return { message: "API is working!" } 
+   - GET /api/nonexistent → Should return 404 with { error: "Route not found" }  
+   - GET /api/destinations → Should return a list of destinations (array) 
+   - POST /api/destinations → Should add a new destination and return { message: "Destination added successfully" }
+   - POST /api/destinations (missing data) → Should return 400 with { error: "Missing required fields" }
+   - GET /api/fail → Should return 500 with { error: "Internal Server Error" }
+  
 
 ### 🏃 Run Tests  
 
