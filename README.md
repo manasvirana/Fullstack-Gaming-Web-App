@@ -19,7 +19,7 @@ A fun travel guessing game where players receive cryptic clues about famous dest
 
 ## 🚀 **Live Demo**  
 
-🔗 **Frontend (Render):** [Globetrotter Challenge](https://fullstack-gaming-web-app.vercel.app/)  
+🔗 **Frontend (Vercel):** [Globetrotter Challenge](https://fullstack-gaming-web-app.vercel.app/)  
 🔗 **Backend (Railway):** [API Server](https://fullstack-gaming-web-app-production.up.railway.app/)  
 
 ---
@@ -30,7 +30,7 @@ A fun travel guessing game where players receive cryptic clues about famous dest
 - **Frontend:** React.js, CSS  
 - **Backend:** Node.js, Express  
 - **Database:** PostgreSQL  
-- **Deployment:** Render (Frontend), Railway (Backend)  
+- **Deployment:**Vercel (Frontend), Railway (Backend)  
 - **Testing:** Jest with React Testing Library  
 
 ---
