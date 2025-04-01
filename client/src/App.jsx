@@ -11,8 +11,7 @@ const App = () => {
     <Router>
       <div className="app-container">
         <nav className="navbar">
-        <Link to="/" className="nav-link">Leaderboard</Link>
-        <span className="separator">|</span>
+        
           <Link to="/" className="nav-link">Play Game</Link>
           <span className="separator">|</span>
           <Link to="/challenge" className="nav-link">Challenge a Friend</Link>
