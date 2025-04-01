@@ -26,12 +26,41 @@ const Confetti = () => {
     const timer = setTimeout(() => {
       setParticles([]);
     }, 2500);
+    const submitScore = async () => {
+      if (!user) return;
+    
+      try {
+        await fetch(`${API_BASE_URL}/api/scores`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ username: user.username, score, totalAnswered }),
+        });
+      } catch (error) {
+        console.error("Failed to submit score:", error);
+      }
+    };
+    
     
     return () => clearTimeout(timer);
   }, []);
   
   return (
-    <div className="confetti-container" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', overflow: 'hidden', zIndex: 100 }}>
+    <div className="confetti-container" style={{ position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      pointerEvents: 'none',
+      overflow: 'hidden',
+      zIndex: 100
+      }}>
       {particles.map(p => (
         <div
           key={p.id}

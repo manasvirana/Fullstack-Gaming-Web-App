@@ -2,8 +2,8 @@
 
 A fun travel guessing game where players receive cryptic clues about famous destinations and must guess the correct answer.  
 
-[Globetrotter](![Screenshot 2025-03-15 154334](https://github.com/user-attachments/assets/2abec7a2-7040-4f2f-9d28-ca89efac9483)
-)  
+[Globetrotter](![Screenshot 2025-03-15 154334]https://github.com/user-attachments/assets/2abec7a2-7040-4f2f-9d28-ca89efac9483)
+ 
 
 ---
 
@@ -30,7 +30,11 @@ A fun travel guessing game where players receive cryptic clues about famous dest
 - **Frontend:** React.js, CSS  
 - **Backend:** Node.js, Express  
 - **Database:** PostgreSQL  
+<<<<<<< HEAD
 - **Deployment:**Vercel (Frontend), Railway (Backend)  
+=======
+- **Deployment:** Vercel (Frontend), Railway (Backend)  
+>>>>>>> 4092e8e (updated readme)
 - **Testing:** Jest with React Testing Library  
 
 ---
@@ -85,7 +89,7 @@ Before running this project, ensure you have the following installed:
 
 6. **Deployment**  
    - **Backend:** Hosted on **Railway** for scalability and reliability.  
-   - **Frontend:** Deployed on **Render** for a smooth user experience.  
+   - **Frontend:** Deployed on **Vercel** for a smooth user experience.  
 ## 🧪 Testing  
 
 To ensure the reliability and correctness of the application, the following testing strategies were implemented:  
@@ -95,15 +99,9 @@ To ensure the reliability and correctness of the application, the following test
    - Tested edge cases like invalid inputs and unauthorized access.  
 ![Screenshot 2025-03-16 014517](https://github.com/user-attachments/assets/29f3e886-e769-4c3b-ae43-98e59878c8fa)
 
-2. **Automated Testing with Jest & Supertest**  
-   - GET / → Should return { message: "Server is running!" }
-   - GET /api/test → Should return { message: "API is working!" } 
-   - GET /api/nonexistent → Should return 404 with { error: "Route not found" }  
-   - GET /api/destinations → Should return a list of destinations (array) 
-   - POST /api/destinations → Should add a new destination and return { message: "Destination added successfully" }
-   - POST /api/destinations (missing data) → Should return 400 with { error: "Missing required fields" }
-   - GET /api/fail → Should return 500 with { error: "Internal Server Error" }
-  
+2. **Unit Testing with Jest**  
+   - Wrote unit tests for critical functions, including API request handlers and game logic.  
+   - Ensured correct responses for valid and invalid data.    
 
 ### 🏃 Run Tests  
 
